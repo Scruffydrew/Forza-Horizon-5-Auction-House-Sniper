@@ -1,5 +1,7 @@
 # Forza-Horizon-5-Auction-House-Sniper
-Before running this program, you need to know that the only way to stop the program is to either close the console or to end it in task manager, it will also continuously snipe cars for you so can leave it over night and potentially come back to multiple purchases of cars.
+Please note that this bot does not bid on the cars on the auction house but instead buys out the car, in addition this bot does not garentee the successful purchase of a car from the auction house nor does it garentee a successful wining buyout of a car, it simply just allows you to try and snipe cars while you are not at your computer. 
+
+**The only way to stop the program is to either close the console or to end it in task manager, it will also continuously snipe cars for you so can leave it over night and potentially come back to multiple purchases of cars.**
 
 Before launching the application you need to setup a few things, don't worry this isnt anything substantial, but you will need to do this each time you run the program.
 
@@ -34,3 +36,5 @@ Step 4:
 Step 5: 
   
   Run the program and click back into Forza Horizon 5, and move your curson somewhere where it wont be able to select anything on screen, this can be somewhere on a second monitor   (if you have one) or a good place to move it to is the top left hand corner of your screen.
+  
+  **At all times you must be clicked into Forza Horizon 5 otherwise the program will not work as it just simulates keyboard presses to create a sort of macro that is able to make decisions on what it should do based on what it can see on your screen**
