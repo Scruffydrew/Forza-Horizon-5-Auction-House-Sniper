@@ -18,6 +18,21 @@ def resource_path(relative_path):
 def blockPrint():
     sys.stdout = open(os.devnull, 'w')
 
+class Logger(object):
+    def __init__(self):
+        self.terminal = sys.stdout
+        self.log = open("logfile.log", "a")
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)  
+    def flush(self):
+        # this flush method is needed for python 3 compatibility.
+        # this handles the flush command by doing nothing.
+        # you might want to specify some extra behavior here.
+        pass    
+
+sys.stdout = Logger()
+
 # Start of Code
 print("Welcome to the Forza Auction House Sniper Bot")
 time.sleep(2)
@@ -25,7 +40,7 @@ print("Starting program")
 time.sleep(2)
 
 # Activates the print block function
-blockPrint()
+#blockPrint()
 
 keyboard = Controller()
 
