@@ -7,6 +7,7 @@ import keyboard as keyboardlistener
 from threading import Thread
 from tkinter import Label, PhotoImage, Button
 import tkinter as tk
+import pyautogui
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -22,7 +23,6 @@ def resource_path(relative_path):
 def blockPrint():
     sys.stdout = open(os.devnull, 'w')
 
-<<<<<<< HEAD
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
@@ -44,18 +44,10 @@ def quit_win():
 
 # Bind the ESC key with the callback function
 keyboardlistener.add_hotkey('ctrl + esc', quit_win)
-=======
-# Start of Code
-print("Welcome to the Forza Auction House Sniper Bot")
-time.sleep(2)
-print("Starting program")
-time.sleep(2)
->>>>>>> parent of 2afa19e (Added Log file)
 
 # Activates the print block function
 blockPrint()
 
-<<<<<<< HEAD
 def sniperscript():
     # Start of Code
     print("Welcome to the Forza Auction House Sniper Bot")
@@ -97,50 +89,6 @@ def sniperscript():
             print("Line: 58")
             #print("position : ", ahsearch[0], ahsearch[1])
             keyboard.press(Key.enter) # Enters auction house menu
-=======
-keyboard = Controller()
-
-keyy = "y" # Used to press down and release the 'y' key
-kdown = "down" # Used to press down and release the 'down arrow' key
-keyenter = "enter" # Used to press down and release the 'enter' key
-
-ahsearch = imagesearch(resource_path("ahsearch.png")) # Search for the image 'ahsearch.png' on your screen
-sconfirm = imagesearch(resource_path("searchconfirm.png")) # Search for the image 'searchconfirm.png' on your screen
-
-#print("position, ahsearch: ", ahsearch[0], ahsearch[1])
-#print("position, sconfirm: ", sconfirm[0], sconfirm[1])
-#print("position, car: ", car[0], car[1])
-
-cat = 0 # Used to make the program loop
-turbo = 0 # Used to enter the ah menu
-Immortal_Snail = 1 # Used to confirm the settings chosen in the auction house menu
-supercharger = 1 # Used to select the car and purchase it from the auction house
-chinas_population = 0 # Used to back out of the buy-out screen and return to the start of the script
-
-while cat == 0: # Allows the program to loop
-    print("Line: 50")
-    #print("cat: " + str(cat))
-    #print("turbo: " + str(turbo))
-    #print("Immortal Snail: " + str(Immortal_Snail))
-    #print("supercharger: " + str(supercharger))
-    time.sleep(.9)
-    while turbo == 0 and ahsearch[0] != -1:
-        start = time.time()
-        print("Line: 58")
-        #print("position : ", ahsearch[0], ahsearch[1])
-        keyboard.press(Key.enter) # Enters auction house menu
-        keyboard.release(Key.enter)
-        Immortal_Snail = 0 # Allows the 'while Immortal_Snail == 0:' and following lines of code to run
-        turbo = 1 # Stops the 'while turbo == 0 and ahsearch[0] != -1:' and following lines of code from running
-
-    while Immortal_Snail == 0:
-        print("Line: 66")
-        sconfirm = imagesearch(resource_path("searchconfirm.png"))
-        if sconfirm[0] != -1:
-            print("Line: 69")
-            #print("position : ", sconfirm[0], sconfirm[1])
-            keyboard.press(Key.enter) # Confirms if you are in ah and searches for a car
->>>>>>> parent of 2afa19e (Added Log file)
             keyboard.release(Key.enter)
             Immortal_Snail = 0 # Allows the 'while Immortal_Snail == 0:' and following lines of code to run
             turbo = 1 # Stops the 'while turbo == 0 and ahsearch[0] != -1:' and following lines of code from running
@@ -275,7 +223,7 @@ while cat == 0: # Allows the program to loop
                         continue
 def closeprog():
     consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nClosing Program")
-    time.wait(1)
+    time.sleep(1)
     sys.exit()
 
 root = tk.Tk()
@@ -284,9 +232,11 @@ consoleoutput.set("")
 lastoutput = tk.StringVar()
 lastoutput.set("")
 
+width, height= pyautogui.size()
+
 root.title("Forza Horizon 5 Sniper") # names the Tk root window  
 root.overrideredirect(1) # removes title bar from window
-root.geometry("1920x1080")
+root.geometry(("%dx%d" % (width, height)))
 root.configure(bg='grey')
 root.wm_attributes("-topmost", True)
 root.wm_attributes("-transparentcolor", "grey")
@@ -297,7 +247,9 @@ LastOutput=Label(textvariable=lastoutput, fg='#ffffff', bg='grey')
 LastOutput.grid()
 overlayimg=PhotoImage(file=resource_path('overlay.png'))
 overlay=Button(root, image=overlayimg, bg='grey', highlightbackground = "grey", highlightthickness = 0, bd=0, activebackground = "grey", command = closeprog)
-overlay.place(x=1800, y=1049)
+X=width-120
+Y=height-31
+overlay.place(x=X, y=Y)
 
 Script = Thread(target=sniperscript)
 Script.setDaemon(True)
