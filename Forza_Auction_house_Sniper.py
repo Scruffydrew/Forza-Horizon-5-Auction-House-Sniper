@@ -1,13 +1,11 @@
 from python_imagesearch.imagesearch import *
 from pynput.keyboard import Key, Controller
 from datetime import datetime
-import time
-import sys
+import time, sys, pyautogui
 import keyboard as keyboardlistener
 from threading import Thread
 from tkinter import Label, PhotoImage, Button
 import tkinter as tk
-import pyautogui
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -30,7 +28,6 @@ class Logger(object):
     def write(self, message):
         self.terminal.write(message)
         self.log.write(message)  
-
     def flush(self):
         # this flush method is needed for python 3 compatibility.
         # this handles the flush command by doing nothing.
@@ -39,11 +36,10 @@ class Logger(object):
 
 sys.stdout = Logger()
 
-def quit_win():
-    os._exit(0)
-
-# Bind the ESC key with the callback function
-keyboardlistener.add_hotkey('ctrl + esc', quit_win)
+def closeprog():
+    consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nClosing Program")
+    time.sleep(1)
+    sys.exit()
 
 # Activates the print block function
 blockPrint()
@@ -67,55 +63,49 @@ def sniperscript():
     ahsearch = imagesearch(resource_path("ahsearch.png")) # Search for the image 'ahsearch.png' on your screen
     sconfirm = imagesearch(resource_path("searchconfirm.png")) # Search for the image 'searchconfirm.png' on your screen
 
-    #print("position, ahsearch: ", ahsearch[0], ahsearch[1])
-    #print("position, sconfirm: ", sconfirm[0], sconfirm[1])
-    #print("position, car: ", car[0], car[1])
-
     cat = 0 # Used to make the program loop
     turbo = 0 # Used to enter the ah menu
     Immortal_Snail = 1 # Used to confirm the settings chosen in the auction house menu
     supercharger = 1 # Used to select the car and purchase it from the auction house
     chinas_population = 0 # Used to back out of the buy-out screen and return to the start of the script
+    listingloading = 0 # Used to loop checking pixel colour while waiting for Austion House listings to load
 
     while cat == 0: # Allows the program to loop
         print("Line: 50")
-        #print("cat: " + str(cat))
-        #print("turbo: " + str(turbo))
-        #print("Immortal Snail: " + str(Immortal_Snail))
-        #print("supercharger: " + str(supercharger))
         time.sleep(.9)
         while turbo == 0 and ahsearch[0] != -1:
             start = time.time()
             print("Line: 58")
-            #print("position : ", ahsearch[0], ahsearch[1])
             keyboard.press(Key.enter) # Enters auction house menu
             keyboard.release(Key.enter)
             Immortal_Snail = 0 # Allows the 'while Immortal_Snail == 0:' and following lines of code to run
             turbo = 1 # Stops the 'while turbo == 0 and ahsearch[0] != -1:' and following lines of code from running
-
         while Immortal_Snail == 0:
             print("Line: 66")
             sconfirm = imagesearch(resource_path("searchconfirm.png"))
             if sconfirm[0] != -1:
                 print("Line: 69")
-                #print("position : ", sconfirm[0], sconfirm[1])
                 keyboard.press(Key.enter) # Confirms if you are in ah and searches for a car
                 keyboard.release(Key.enter)
                 supercharger = 0 # Allows the 'while supercharger == 0:' and following lines of code to run
                 Immortal_Snail = 1 # Stops the 'while Immortal_Snail == 0:' and following lines of code from running
-            
         while supercharger == 0:
             print("Line: 77")
             Rear_Window = imagesearch(resource_path("ah.png")) # Checks to see if you are in the auction house - viewing the cars up for auction
             if Rear_Window[0] != -1:
                 time.sleep(.52)
                 car = imagesearch(resource_path('auctiondetails.png')) # Search for the image of the auctionhouse details of the desired car on your screen
-                #print("position, car: ", car[0], car[1])
                 if car[0] != -1:
-                    print("Line: 84")
-                    David_Joesph = imagesearch(resource_path('bidnow.png')) # Searches for the bidnow image on your screen
-                    if David_Joesph[0] != -1:
-                        #print("car stage achieved!!!")
+                    px = pyautogui.pixel(873, 234)
+                    if px == (247,247,247):
+                        listingloading = 1
+                        while listingloading == 1:
+                            print("Line: 84")
+                            David_Joesph = pyautogui.pixel(873, 234) # Gets the RGB Values for the pixel at the location X:873 Y:234
+                            print(David_Joesph) # Prints the RGB Values for the pixel at the location X:873 Y:234
+                            if David_Joesph != (247,247,247): # Checks if the RGB values are not equal to RGB(247,247,247)
+                                listingloading = 0
+                    if David_Joesph != (247,247,247): # Checks if the RGB values are not equal to RGB(247,247,247)
                         keyboard.press(keyy) # Auction house options
                         keyboard.release(keyy)
                         print("Line: 90")
@@ -138,7 +128,7 @@ def sniperscript():
                             chinas_population = 1 # Allows the 'while chinas_population == 1:' and following lines of code to run
                     else: # If there is no car avaliable for purchase on the auction house
                         print("Line: 109")
-                        #print("image not found")
+                        print("image not found")
                         keyboard.press(Key.esc) # Backs out of the auction house, to allow it to have another go at searching
                         keyboard.release(Key.esc)
                         print("Line: 113")
@@ -149,7 +139,7 @@ def sniperscript():
                         supercharger = 1
                 else: # If there is no car avaliable for purchase on the auction house
                         print("Line: 120")
-                        #print("image not found")
+                        print("image not found")
                         keyboard.press(Key.esc) # Backs out of the auction house, to allow it to have another go at searching
                         keyboard.release(Key.esc)
                         print("Line: 124")
@@ -168,17 +158,14 @@ def sniperscript():
                     time.sleep(2)
                     keyboard.press(Key.enter) # Backs out of the successful buy-out screen
                     keyboard.release(Key.enter)
-                    #print("china has been breached!!")
                     print("Line: 157")
                     time.sleep(.7)
                     print("Line: 159")
-                    #print("china has been breached!!")
                     keyboard.press(Key.esc) # Backs out of the auction house buy menu
                     keyboard.release(Key.esc)
                     print("Line: 163")
                     time.sleep(.7)
                     print("Line: 165")
-                    #print("china has been breached!!")
                     keyboard.press(Key.esc) # Returns to start location, before entering the search for the desired car
                     keyboard.release(Key.esc)
                     print("Line: 169")
@@ -198,17 +185,14 @@ def sniperscript():
                         time.sleep(2)
                         keyboard.press(Key.enter) # Backs out of the successful buy-out screen
                         keyboard.release(Key.enter)
-                        #print("china has been breached!!")
                         print("Line: 157")
                         time.sleep(.7)
                         print("Line: 159")
-                        #print("china has been breached!!")
                         keyboard.press(Key.esc) # Backs out of the auction house buy menu
                         keyboard.release(Key.esc)
                         print("Line: 163")
                         time.sleep(.7)
                         print("Line: 165")
-                        #print("china has been breached!!")
                         keyboard.press(Key.esc) # Returns to start location, before entering the search for the desired car
                         keyboard.release(Key.esc)
                         print("Line: 169")
@@ -221,11 +205,6 @@ def sniperscript():
                         print("Line: 176")
                         # Restarts the script
                         continue
-def closeprog():
-    consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nClosing Program")
-    time.sleep(1)
-    sys.exit()
-
 root = tk.Tk()
 consoleoutput = tk.StringVar()
 consoleoutput.set("")
