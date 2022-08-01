@@ -6,6 +6,7 @@ import keyboard as keyboardlistener
 from threading import Thread
 from tkinter import Label, PhotoImage, Button
 import tkinter as tk
+from win32gui import GetWindowText, GetForegroundWindow
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -42,7 +43,7 @@ def closeprog():
     sys.exit()
 
 # Activates the print block function
-blockPrint()
+#blockPrint()
 
 def sniperscript():
     # Start of Code
@@ -52,6 +53,12 @@ def sniperscript():
     print("Starting program")
     consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nStarting program")
     time.sleep(4)
+    activewin = 0
+    while activewin == 0:
+        print(GetWindowText(GetForegroundWindow()))
+        if GetWindowText(GetForegroundWindow()) == "Forza Horizon 5":
+            activewin = 1
+
     consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nProgram Running")
 
     keyboard = Controller()
