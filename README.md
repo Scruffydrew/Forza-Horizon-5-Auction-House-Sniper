@@ -57,4 +57,4 @@ Just click on the button labeled Run anyway, this will run the program.
 
 You can read the enforcement guidelines at https://support.forzamotorsport.net/hc/en-us/articles/360035563914-Forza-Enforcement-Guidelines
 
-Unless Forza Horizon 5 is able to detect an unhumanly fast imput of key presses then it is unlikely that this will not be detected and you shouldnt get banned
+Unless Forza Horizon 5 is able to detect an unhumanly fast imput of key presses then it is unlikely that this will be detected and you shouldn't get banned
