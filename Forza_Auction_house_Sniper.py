@@ -98,10 +98,10 @@ def sniperscript():
                 Immortal_Snail = 1 # Stops the 'while Immortal_Snail == 0:' and following lines of code from running
         while supercharger == 0:
             print("Line: 77")
-            Rear_Window = pyautogui.pixel(411, 172)
+            Rear_Window = pyautogui.pixel(411, 172) # Checks to see if you are in the auction house - viewing the cars up for auction
             if Rear_Window == (255,222,57):
                 time.sleep(.52)
-                car = pyautogui.pixel(990, 231)
+                car = pyautogui.pixel(990, 231) # Search for the image of the auctionhouse details of the desired car on your screen
                 if car == (52,23,53):
                     time.sleep(0.1)
                     px = pyautogui.pixel(873, 234)
@@ -123,11 +123,15 @@ def sniperscript():
                         keyboard.release(Key.down)
                         print("Line: 94")
                         time.sleep(.12)
+                        BuyoutOption = pyautogui.pixel(632, 532) # Confirms that the butout option is selected
+                        if BuyoutOption != (255,0,134):
+                            keyboard.press(Key.down) # Move to Buy-out
+                            keyboard.release(Key.down)
                         keyboard.press(Key.enter) # Opens Buy-out
                         keyboard.release(Key.enter)
                         print("Line: 98")
                         time.sleep(0.5)
-                        Budget_Shaeden = pyautogui.pixel(627, 572)
+                        Budget_Shaeden = pyautogui.pixel(627, 572) # Search for the image 'placebid.png' on your screen
                         if Budget_Shaeden == (255,0,134):
                             print("Line: 101")
                             keyboard.press(Key.enter) # Buys the car
@@ -161,8 +165,11 @@ def sniperscript():
             while chinas_population == 1:
                 print("Line: 131")
                 time.sleep(1.8)
+                buyoutoutcome = pyautogui.pixel(628, 438) # Checks to see if the buyout outcome is still loading
+                while buyoutoutcome == (52,23,53):
+                    buyoutoutcome = pyautogui.pixel(628, 438) # Checks to see if the buyout outcome is still loading
                 print("Line: 133")
-                buyout = pyautogui.pixel(637, 458)
+                buyout = pyautogui.pixel(629, 451) # Search for the image 'buyout.png' on your screen
                 if buyout == (52,23,53):
                     print("Line: 152")
                     time.sleep(3)
@@ -170,11 +177,32 @@ def sniperscript():
                     keyboard.release(Key.enter)
                     print("Line: 157")
                     time.sleep(.7)
+                    collectcar = pyautogui.pixel(631, 530) # Checks if collect car is currently selected
+                    if collectcar == (255,0,134):
+                        print("collect car is selected")
+                        keyboard.press(Key.enter) # Collects the car
+                        keyboard.release(Key.enter)
+                        time.sleep(.5)
+                        carcollected = pyautogui.pixel(142, 995) # Checks if collect car is currently selected
+                        while carcollected != (22,11,23):
+                            carcollected = pyautogui.pixel(142, 995) # Checks if collect car is currently selected
+                        print("car has been collected")
+                        keyboard.press(Key.enter) # Collects the car
+                        keyboard.release(Key.enter)
+                    else:
+                        print("Car collect option not selected")
                     print("Line: 159")
+                    sellerdetails = pyautogui.pixel(629, 529) # Search for the image of the auctionhouse details of the desired car on your screen
+                    while sellerdetails != (255,0,134):
+                        sellerdetails = pyautogui.pixel(629, 529) # Search for the image of the auctionhouse details of the desired car on your screen
+                        sellerdetails = pyautogui.pixel(629, 556) # Search for the image of the auctionhouse details of the desired car on your screen
                     keyboard.press(Key.esc) # Backs out of the auction house buy menu
                     keyboard.release(Key.esc)
                     print("Line: 163")
                     time.sleep(.7)
+                    auctionhouse = pyautogui.pixel(990, 231) # Search for the image of the auctionhouse details of the desired car on your screen
+                    while auctionhouse != (52,23,53):
+                        auctionhouse = pyautogui.pixel(990, 231) # Search for the image of the auctionhouse details of the desired car on your screen
                     print("Line: 165")
                     keyboard.press(Key.esc) # Returns to start location, before entering the search for the desired car
                     keyboard.release(Key.esc)
@@ -189,7 +217,7 @@ def sniperscript():
                     # Restarts the script
                     continue
                 else:
-                    buyoutfailed = pyautogui.pixel(641, 477)
+                    buyoutfailed = pyautogui.pixel(629, 467) # Search for the image 'buyoutfailed.png' on your screen
                     if buyoutfailed == (52,23,53):
                         print("Line: 152")
                         time.sleep(2)
