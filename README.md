@@ -56,3 +56,5 @@ Just click on the button labeled Run anyway, this will run the program.
 **WARNING: This bot does go against the Forza Enforcement Guidelines and therefore use at your own risk**
 
 You can read the enforcement guidelines at https://support.forzamotorsport.net/hc/en-us/articles/360035563914-Forza-Enforcement-Guidelines
+
+Unless Forza Horizon 5 is able to detect an unhumanly fast imput of key presses then it is unlikely that this will not be detected and you shouldnt get banned
