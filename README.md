@@ -52,3 +52,9 @@ When this comes up click on More info
 After clicking on More info the pop-up will look something similar to the above image, just may be a different colour depending on your what you have your colours set to in your settings.
 
 Just click on the button labeled Run anyway, this will run the program.
+
+**WARNING: This bot does go against the Forza Enforcement Guidelines and therefore use at your own risk**
+
+You can read the enforcement guidelines at https://support.forzamotorsport.net/hc/en-us/articles/360035563914-Forza-Enforcement-Guidelines
+
+Unless Forza Horizon 5 is able to detect an unhumanly fast imput of key presses then it is unlikely that this will be detected and you shouldn't get banned
