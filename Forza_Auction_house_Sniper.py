@@ -219,6 +219,10 @@ def sniperscript():
                     print("Line: 157")
                     time.sleep(.7)
                     collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
+                    while collectcar != (255,0,134):
+                        collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
+                        print("Car collect option not selected")
+                        time.sleep(.1)
                     if collectcar == (255,0,134):
                         print("collect car is selected")
                         keyboard.press(Key.enter) # Collects the car
