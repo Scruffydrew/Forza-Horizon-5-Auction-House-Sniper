@@ -237,10 +237,11 @@ def sniperscript():
                     else:
                         print("Car collect option not selected")
                     print("Line: 159")
-                    sellerdetails = pyautogui.pixel(sellerdetailsx, sellerdetailsy) # Search for the image of the auctionhouse details of the desired car on your screen
+                    sellerdetails = pyautogui.pixel(sellerdetailsx, sellerdetailsy) # Search for the image of the seller details of the desired car on your screen
                     while sellerdetails != (255,0,134):
-                        sellerdetails = pyautogui.pixel(sellerdetailsx, sellerdetailsy) # Search for the image of the auctionhouse details of the desired car on your screen
-                        sellerdetails = pyautogui.pixel(sellerdetails2x, sellerdetails2y) # Search for the image of the auctionhouse details of the desired car on your screen
+                        sellerdetails = pyautogui.pixel(sellerdetailsx, sellerdetailsy) # Search for the image of the seller details of the desired car on your screen
+                        sellerdetails = pyautogui.pixel(sellerdetails2x, sellerdetails2y) # Search for the image of the seller details of the desired car on your screen
+                    time.sleep(.2)
                     keyboard.press(Key.esc) # Backs out of the auction house buy menu
                     keyboard.release(Key.esc)
                     print("Line: 163")
@@ -264,28 +265,28 @@ def sniperscript():
                 else:
                     buyoutfailed = pyautogui.pixel(buyoutfailedx, buyoutfailedy) # Search for the image 'buyoutfailed.png' on your screen
                     if buyoutfailed == (52,23,53):
-                        print("Line: 152")
+                        print("Line: 268")
                         time.sleep(2)
                         keyboard.press(Key.enter) # Backs out of the successful buy-out screen
                         keyboard.release(Key.enter)
-                        print("Line: 157")
+                        print("Line: 272")
                         time.sleep(.7)
-                        print("Line: 159")
+                        print("Line: 274")
                         keyboard.press(Key.esc) # Backs out of the auction house buy menu
                         keyboard.release(Key.esc)
-                        print("Line: 163")
+                        print("Line: 277")
                         time.sleep(.7)
-                        print("Line: 165")
+                        print("Line: 279")
                         keyboard.press(Key.esc) # Returns to start location, before entering the search for the desired car
                         keyboard.release(Key.esc)
-                        print("Line: 169")
+                        print("Line: 282")
                         # Resets all variables that are stopping previous lines of code from running
                         turbo = 0
                         Immortal_Snail = 1
                         supercharger = 1
                         chinas_population = 0
                         cat = 0
-                        print("Line: 176")
+                        print("Line: 289")
                         # Restarts the script
                         continue
 root = tk.Tk()
