@@ -1,7 +1,7 @@
 from python_imagesearch.imagesearch import *
 from pynput.keyboard import Key, Controller
 from datetime import datetime
-import time, sys, pyautogui, os
+import time, sys, pyautogui
 import keyboard as keyboardlistener
 from threading import Thread
 from tkinter import Label, PhotoImage, Button
@@ -45,7 +45,6 @@ def closeprog():
 
 # Activates the print block function
 #blockPrint()
-
 
 def sniperscript():
     # Start of Code
@@ -161,19 +160,15 @@ def sniperscript():
                         keyboard.release(keyy)
                         print("Line: 90")
                         time.sleep(.25)
-                        BuyoutOption = pyautogui.pixel(BuyoutOptionx, BuyoutOptiony) # Confirms that the butout option is selected
-                        if BuyoutOption != (255,0,134):
-                            keyboard.press(Key.down) # Move to Buy-out
-                            keyboard.release(Key.down)
-                            print("Moved to Buy-Out Button")
+                        keyboard.press(Key.down) # Move to Buy-out
+                        keyboard.release(Key.down)
                         print("Line: 94")
                         time.sleep(.12)
                         BuyoutOption = pyautogui.pixel(BuyoutOptionx, BuyoutOptiony) # Confirms that the butout option is selected
                         if BuyoutOption != (255,0,134):
                             keyboard.press(Key.down) # Move to Buy-out
                             keyboard.release(Key.down)
-                            print("Moved to Buy-Out Button")
-                        keyboard.press(Key.enter) # Selects Buy-out
+                        keyboard.press(Key.enter) # Opens Buy-out
                         keyboard.release(Key.enter)
                         print("Line: 98")
                         time.sleep(0.5)
@@ -184,7 +179,6 @@ def sniperscript():
                             keyboard.release(Key.enter)
                             purchase = time.time()
                             print("Line: 105")
-                            print("Car Purchased")
                             supercharger = 1 # Stops the 'while supercharger == 0:' and following lines of code from running
                             chinas_population = 1 # Allows the 'while chinas_population == 1:' and following lines of code to run
                     else: # If there is no car avaliable for purchase on the auction house
