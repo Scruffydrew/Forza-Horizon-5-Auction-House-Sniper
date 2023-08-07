@@ -122,6 +122,7 @@ def sniperscript():
     while cat == 0: # Allows the program to loop
         print("Line: 50")
         time.sleep(.9)
+        Immortal_Snail = 0
         while turbo == 0 and ahsearch == (255,0,134):
             start = time.time()
             print("Line: 58")
