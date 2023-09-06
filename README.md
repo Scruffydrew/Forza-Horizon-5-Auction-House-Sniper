@@ -4,7 +4,7 @@ Please note that this bot does not bid on the cars on the auction house but inst
 **To Stop the program you can either click on the button on the bottom right of your screen labelled with "Scruffydrew パン" or you can close the console or end it in task manager.**
 
 **The program will continuously snipe cars for you so can leave it over night and potentially come back to multiple purchases of cars.**
-
+**Program will only work with a 16:9 screen resolution**
 Before launching the application you need to setup a few things, don't worry this isnt anything substantial, but you will need to do this each time you run the program.
 
 Step 1:
