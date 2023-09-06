@@ -94,8 +94,8 @@ def sniperscript():
     buyouty = int(0.417592593 * MonitorHeight)
     collectcarx = int(0.328645833 * MonitorWidth)
     collectcary = int(0.490740741 * MonitorHeight)
-    carcollectedx = int(0.073958333 * MonitorWidth)
-    carcollectedy = int(0.921296296 * MonitorHeight)
+    carcollectedx = int(0.3296875 * MonitorWidth)
+    carcollectedy = int(0.47685185185 * MonitorHeight)
     sellerdetailsx = int(0.327604167 * MonitorWidth)
     sellerdetailsy = int(0.489814815 * MonitorHeight)
     sellerdetails2x = int(0.327604167 * MonitorWidth)
@@ -120,12 +120,12 @@ def sniperscript():
     listingloading = 0 # Used to loop checking pixel colour while waiting for Austion House listings to load
 
     while cat == 0: # Allows the program to loop
-        print("Line: 50")
+        print("starting program")
         time.sleep(.9)
         Immortal_Snail = 0
         while turbo == 0 and ahsearch == (255,0,134):
             start = time.time()
-            print("Line: 58")
+            print("Entering Auction House")
             keyboard.press(Key.enter) # Enters auction house menu
             keyboard.release(Key.enter)
             Immortal_Snail = 0 # Allows the 'while Immortal_Snail == 0:' and following lines of code to run
@@ -134,13 +134,13 @@ def sniperscript():
             print("Line: 66")
             sconfirm = pyautogui.pixel(sconfirmx, sconfirmy)
             if sconfirm == (255,0,134):
-                print("Line: 69")
+                print("Checking if you are currently in ah")
                 keyboard.press(Key.enter) # Confirms if you are in ah and searches for a car
                 keyboard.release(Key.enter)
                 supercharger = 0 # Allows the 'while supercharger == 0:' and following lines of code to run
                 Immortal_Snail = 1 # Stops the 'while Immortal_Snail == 0:' and following lines of code from running
         while supercharger == 0:
-            print("Line: 77")
+            print("Checking if there are any cars up for auction")
             Rear_Window = pyautogui.pixel(Rear_Windowx, Rear_Windowy) # Checks to see if you are in the auction house - viewing the cars up for auction
             if Rear_Window == (255,222,57):
                 time.sleep(.52)
@@ -160,7 +160,7 @@ def sniperscript():
                     if David_Joesph != (247,247,247): # Checks if the RGB values are not equal to RGB(247,247,247)
                         keyboard.press(keyy) # Auction house options
                         keyboard.release(keyy)
-                        print("Line: 90")
+                        print("Bringing up shortcut menu to purchase the car")
                         time.sleep(.25)
                         BuyoutOption = pyautogui.pixel(BuyoutOptionx, BuyoutOptiony) # Confirms that the butout option is selected
                         if BuyoutOption != (255,0,134):
@@ -231,14 +231,25 @@ def sniperscript():
                         print("Car collect option not selected")
                         time.sleep(.1)
                     if collectcar == (255,0,134):
-                        print("collect car is selected")
+                        print("Collect car is selected")
+                        time.sleep(.1)
                         keyboard.press(Key.enter) # Collects the car
                         keyboard.release(Key.enter)
                         time.sleep(.5)
+                        collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
+                        while collectcar == (255,0,134):
+                            collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
+                            keyboard.press(Key.enter) # Collects the car
+                            keyboard.release(Key.enter)
+                            print("Attempting to collect the car")
+                            time.sleep(.1)
                         carcollected = pyautogui.pixel(carcollectedx, carcollectedy) # Checks if collect car is currently selected
-                        while carcollected != (22,11,23):
+                        while carcollected != (52, 23, 53):
                             carcollected = pyautogui.pixel(carcollectedx, carcollectedy) # Checks if collect car is currently selected
-                        print("car has been collected")
+                            print("Waiting for car to be collected")
+                            time.sleep(.1)
+                        print("Car has been collected")
+                        time.sleep(.1)
                         keyboard.press(Key.enter) # Collects the car
                         keyboard.release(Key.enter)
                     else:
