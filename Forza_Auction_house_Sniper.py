@@ -92,8 +92,10 @@ def sniperscript():
     buyoutoutcomey = int(0.405555556 * MonitorHeight)
     buyoutx = int(0.327604167 * MonitorWidth)
     buyouty = int(0.417592593 * MonitorHeight)
-    collectcarx = int(0.328645833 * MonitorWidth)
-    collectcary = int(0.490740741 * MonitorHeight)
+    collectcarx = int(0.32291666666 * MonitorWidth)
+    collectcary = int(0.46481481481 * MonitorHeight)
+    collectcar1x = int(0.328645833 * MonitorWidth)
+    collectcar1y = int(0.490740741 * MonitorHeight)
     carcollectedx = int(0.3296875 * MonitorWidth)
     carcollectedy = int(0.47685185185 * MonitorHeight)
     sellerdetailsx = int(0.327604167 * MonitorWidth)
@@ -104,6 +106,8 @@ def sniperscript():
     auctionhousey = int(0.213888889 * MonitorHeight)
     buyoutfailedx = int(0.327604167 * MonitorWidth)
     buyoutfailedy = int(0.432407407 * MonitorHeight)
+    searchahx = int(0.16770833333 * MonitorWidth)
+    searchahy = int(0.29074074074 * MonitorHeight)
 
     time.sleep(2)
 
@@ -122,12 +126,17 @@ def sniperscript():
     while cat == 0: # Allows the program to loop
         print("starting program")
         time.sleep(.9)
-        Immortal_Snail = 0
+        ahsearch = pyautogui.pixel(ahsearchx, ahsearchy)
         while turbo == 0 and ahsearch == (255,0,134):
+            searchah = pyautogui.pixel(searchahx, searchahy)
+            while searchah != (255, 0, 134):
+                print("Please make sure you have the search auction house selected")
+                searchah = pyautogui.pixel(searchahx, searchahy)
+                time.sleep(.5)
             start = time.time()
-            print("Entering Auction House")
             keyboard.press(Key.enter) # Enters auction house menu
             keyboard.release(Key.enter)
+            print("Entering Auction House")
             Immortal_Snail = 0 # Allows the 'while Immortal_Snail == 0:' and following lines of code to run
             turbo = 1 # Stops the 'while turbo == 0 and ahsearch[0] != -1:' and following lines of code from running
         while Immortal_Snail == 0:
@@ -228,6 +237,7 @@ def sniperscript():
                     collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
                     while collectcar != (255,0,134):
                         collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
+                        collectcar = pyautogui.pixel(collectcar1x, collectcar1y) # Checks if collect car is currently selected
                         print("Car collect option not selected")
                         time.sleep(.1)
                     if collectcar == (255,0,134):
