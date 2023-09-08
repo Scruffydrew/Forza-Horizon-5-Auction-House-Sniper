@@ -88,10 +88,10 @@ def sniperscript():
     BuyoutOptiony = int(0.492592593 * MonitorHeight)
     Budget_Shaedenx = int(0.3265625 * MonitorWidth)
     Budget_Shaedeny = int(0.52962963 * MonitorHeight)
-    buyoutoutcomex = int(0.327083333 * MonitorWidth)
-    buyoutoutcomey = int(0.405555556 * MonitorHeight)
-    buyoutx = int(0.327604167 * MonitorWidth)
-    buyouty = int(0.417592593 * MonitorHeight)
+    buyoutoutcomex = int(0.33489583333 * MonitorWidth)        #w:643 h:442
+    buyoutoutcomey = int(0.40925925925 * MonitorHeight)
+    buyoutx = int(0.3328125 * MonitorWidth)               #w:639 h:460
+    buyouty = int(0.42592592592 * MonitorHeight)
     collectcarx = int(0.32291666666 * MonitorWidth)
     collectcary = int(0.46481481481 * MonitorHeight)
     collectcar1x = int(0.328645833 * MonitorWidth)
@@ -104,8 +104,8 @@ def sniperscript():
     sellerdetails2y = int(0.514814815 * MonitorHeight)
     auctionhousex = int(0.515625 * MonitorWidth)
     auctionhousey = int(0.213888889 * MonitorHeight)
-    buyoutfailedx = int(0.327604167 * MonitorWidth)
-    buyoutfailedy = int(0.432407407 * MonitorHeight)
+    buyoutfailedx = int(0.33020833333 * MonitorWidth)             #w:634 h:532
+    buyoutfailedy = int(0.49259259259 * MonitorHeight)
     searchahx = int(0.16770833333 * MonitorWidth)
     searchahy = int(0.29074074074 * MonitorHeight)
 
@@ -219,16 +219,19 @@ def sniperscript():
                         Immortal_Snail = 1
                         chinas_population = 0
                         supercharger = 1
-            while chinas_population == 1:
+            while chinas_population == 1: 
                 print("Line: 131")
                 time.sleep(1.8)
                 buyoutoutcome = pyautogui.pixel(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
                 while buyoutoutcome == (52,23,53):
                     buyoutoutcome = pyautogui.pixel(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
+                    print("Waiting for buyout outcome")
+                    time.sleep(.1)
                 print("Line: 133")
-                buyout = pyautogui.pixel(buyoutx, buyouty) # Search for the image 'buyout.png' on your screen
-                if buyout == (52,23,53):
-                    print("Line: 152")
+                buyoutsuccessful = pyautogui.pixel(buyoutx, buyouty) # Checks if the buyout was successful
+                if buyoutsuccessful == (52,23,53):
+                    #   Buyout Successful
+                    print("Buyout Successful")
                     time.sleep(3)
                     keyboard.press(Key.enter) # Backs out of the successful buy-out screen
                     keyboard.release(Key.enter)
@@ -291,9 +294,10 @@ def sniperscript():
                     # Restarts the script
                     continue
                 else:
-                    buyoutfailed = pyautogui.pixel(buyoutfailedx, buyoutfailedy) # Search for the image 'buyoutfailed.png' on your screen
+                    #   Buyout Failed
+                    buyoutfailed = pyautogui.pixel(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
                     if buyoutfailed == (52,23,53):
-                        print("Line: 268")
+                        print("Buyout Failed")
                         time.sleep(2)
                         keyboard.press(Key.enter) # Backs out of the successful buy-out screen
                         keyboard.release(Key.enter)
