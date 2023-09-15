@@ -79,7 +79,7 @@ def sniperscript():
                     keyboard.press(Key.enter) # Searches the auction house
                     keyboard.release(Key.enter)
                     loop2 = False
-                    break # ################################################################### might work or might not work
+                    break
                 loop1 = False
                 break
 
@@ -115,7 +115,7 @@ def sniperscript():
                     if David_Joesph != (247,247,247): # Checks if the RGB values are not equal to RGB(247,247,247)
                         auctionavailable = True
                         listingloading = 0
-                        break # ################################################################### might work or might not work
+                        break
         else: # If there is no car avaliable for purchase on the auction house
             auctionavailable = False
 
@@ -127,7 +127,7 @@ def sniperscript():
     
     def attemptbuyout():
         # Attempts to buyout the car
-####################################################################### replace time.sleeps with pixel checks to attempt to speed up the process
+
 
         keyboard.press(keyy) # Auction house options
         keyboard.release(keyy)
@@ -183,7 +183,6 @@ def sniperscript():
         if buyoutoutcomewait != (52,23,53):
             print("buyoutoutcomewait not same colour")
             time.sleep(.5)
-            #   ################################################ maybe change to use only one pixel check rather than 2 pixel checks
             buyoutfailed = pyautogui.pixel(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
             buyoutsuccessful = pyautogui.pixel(buyoutx, buyouty) # Checks if the buyout was successful
             if buyoutsuccessful == (52,23,53):
@@ -199,10 +198,8 @@ def sniperscript():
     def buyoutoutcomesuccessful():
         # Collects car and returns to auction house
 
-
         #   Buyout Successful
         print("Buyout Successful")
-
         keyboard.press(Key.enter) # Backs out of the successful buy-out screen
         keyboard.release(Key.enter)
         print("Line: 157")
@@ -263,9 +260,7 @@ def sniperscript():
     def buyoutoutcomefailed():
         # Exits back to auction house shortcut menu
 
-
-        #   Buyout Failed                   ####################################################################### replace time.sleeps with pixel checks to attempt to speed up the process
-        
+        #   Buyout Failed
         print("Buyout Failed")
         time.sleep(.1)
         keyboard.press(Key.enter) # Backs out of the successful buy-out screen
