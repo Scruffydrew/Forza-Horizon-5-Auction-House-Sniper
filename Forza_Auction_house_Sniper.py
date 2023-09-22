@@ -50,7 +50,7 @@ global DEBUGMODE
 DEBUGMODE = True
 
 def sniperscript():
-
+    
     def enterauctionhouse():
         # Search and enter the auction house
         global start
@@ -89,8 +89,8 @@ def sniperscript():
                     break
                 loop1 = False
                 break
-
-            checkforauction()
+    
+        checkforauction() ####################################################################
     
     def checkforauction():
         # Checks the auction house for an available auction
@@ -310,6 +310,7 @@ def sniperscript():
         returntostart()
 
     def returntostart():
+        global count
         # Returns from the auction house to the start
         consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nReturning to start")
         print("Line: 163")
@@ -331,9 +332,12 @@ def sniperscript():
         end = time.time()
         print("loop time:", end-start)
 
-        enterauctionhouse()
+        #count += 1
+        #if count <= 100:
+           #Script.stop()
+        #enterauctionhouse()
 
-
+    
 
     # Start of Code
     print("Welcome to the Forza Auction House Sniper Bot")
@@ -353,6 +357,9 @@ def sniperscript():
     keyboard = Controller()
 
     keyy = "y" # Used to press down and release the 'y' key
+
+    #global count
+    #count = 0
 
     MonitorWidth = GetSystemMetrics(0)
     MonitorHeight = GetSystemMetrics(1)
@@ -404,10 +411,10 @@ def sniperscript():
     time.sleep(2)
 
     consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nProgram Running")
-
-    enterauctionhouse()
-
-
+    while True:
+        enterauctionhouse()
+    #while True: # remove enterauctionhouse from returntostart
+    #enterauctionhouse()
     
 root = tk.Tk()
 consoleoutput = tk.StringVar()
@@ -437,4 +444,5 @@ overlay.place(x=X, y=Y)
 Script = Thread(target=sniperscript)
 Script.setDaemon(True)
 Script.start()
+
 root.mainloop()
