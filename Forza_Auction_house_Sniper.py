@@ -73,8 +73,12 @@ def sniperscript():
                 consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nEntering Auction House")
                 print("Entering Auction House")
                 ahsearch = pyautogui.pixel(ahsearchx, ahsearchy)
-                time.sleep(.01)
-            time.sleep(.5) 
+                time.sleep(.1)
+            #time.sleep(.5)
+            searchloading = pyautogui.pixel(searchloadingx, searchloadingy)
+            while searchloading != (247,247,247):
+                searchloading = pyautogui.pixel(searchloadingx, searchloadingy)
+                print("Waiting for search")
             loop2 = True
             while loop2 == True:
                 print("Line: 66")
@@ -89,8 +93,9 @@ def sniperscript():
                     break
                 loop1 = False
                 break
+            break
     
-        checkforauction() ####################################################################
+        checkforauction()
     
     def checkforauction():
         # Checks the auction house for an available auction
@@ -407,6 +412,9 @@ def sniperscript():
     auctionoptionsy = int(0.3537037037 * MonitorHeight)
     auctionoptions1x = int(0.33020833333 * MonitorWidth)
     auctionoptions1y = int(0.41944444444 * MonitorHeight)
+
+    searchloadingx = int(0.4703125 * MonitorWidth)
+    searchloadingy = int(0.52962962963 * MonitorHeight)
 
     time.sleep(2)
 
