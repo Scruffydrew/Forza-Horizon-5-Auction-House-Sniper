@@ -49,6 +49,15 @@ def closeprog():
 global DEBUGMODE
 DEBUGMODE = True
 
+import mss
+
+def getpixelcolour(x,y):
+    with mss.mss() as sct:
+        pic = sct.grab({'mon':1, 'top':y, 'left':x, 'width':1, 'height':1})
+        g = pic.pixel(0,0)
+        return(g)
+
+
 def sniperscript():
     
     def enterauctionhouse():
@@ -59,30 +68,32 @@ def sniperscript():
         while loop1 == True: # Allows the program to loop
             consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nEntering search")
             print("Entering search")
-            time.sleep(.9)
-            ahsearch = pyautogui.pixel(ahsearchx, ahsearchy)
+            #time.sleep(.9)
+            ahsearch = getpixelcolour(ahsearchx, ahsearchy)
+            while ahsearch != (255,0,134):
+                ahsearch = getpixelcolour(ahsearchx, ahsearchy)
             while ahsearch == (255,0,134):
-                #searchah = pyautogui.pixel(searchahx, searchahy)
+                #searchah = getpixelcolour(searchahx, searchahy)
                 #while searchah != (255, 0, 134):
                 #    print("Make sure you have the search auction house selected")
-                #    searchah = pyautogui.pixel(searchahx, searchahy)
+                #    searchah = getpixelcolour(searchahx, searchahy)
                 #    time.sleep(.5)
                 start = time.time()
                 keyboard.press(Key.enter) # Enters auction house menu
                 keyboard.release(Key.enter)
                 consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nEntering Auction House")
                 print("Entering Auction House")
-                ahsearch = pyautogui.pixel(ahsearchx, ahsearchy)
-                time.sleep(.1)
+                ahsearch = getpixelcolour(ahsearchx, ahsearchy)
+                #time.sleep(.1)
             #time.sleep(.5)
-            searchloading = pyautogui.pixel(searchloadingx, searchloadingy)
+            searchloading = getpixelcolour(searchloadingx, searchloadingy)
             while searchloading != (247,247,247):
-                searchloading = pyautogui.pixel(searchloadingx, searchloadingy)
+                searchloading = getpixelcolour(searchloadingx, searchloadingy)
                 print("Waiting for search")
             loop2 = True
             while loop2 == True:
                 print("Line: 66")
-                sconfirm = pyautogui.pixel(sconfirmx, sconfirmy)
+                sconfirm = getpixelcolour(sconfirmx, sconfirmy)
                 if sconfirm == (255,0,134):     # Confirms if you are in ah search menu
                     print("Checking if you are currently in ah")
                     keyboard.press(Key.enter) # Searches the auction house
@@ -102,20 +113,20 @@ def sniperscript():
         auctionavailable = False
 
         printer = True
-        Rear_Window = pyautogui.pixel(Rear_Windowx, Rear_Windowy)
+        Rear_Window = getpixelcolour(Rear_Windowx, Rear_Windowy)
         while Rear_Window != (255,222,57):
             if printer == True:
                 consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nChecking for any auctions")                
                 print("Checking if there are any cars up for auction")
                 printer = False
-            Rear_Window = pyautogui.pixel(Rear_Windowx, Rear_Windowy) # Checks to see if you are in the auction house - viewing the cars up for auction
+            Rear_Window = getpixelcolour(Rear_Windowx, Rear_Windowy) # Checks to see if you are in the auction house - viewing the cars up for auction
         #if Rear_Window == (255,222,57):
         #time.sleep(.52)
-        car = pyautogui.pixel(carx, cary) # Search for the image of the auctionhouse details of the desired car on your screen
+        car = getpixelcolour(carx, cary) # Search for the image of the auctionhouse details of the desired car on your screen
         if car == (52,23,53):
             auctionavailable = True
-            time.sleep(0.1)
-            px = pyautogui.pixel(pxx, pxy)
+            #time.sleep(0.1)
+            px = getpixelcolour(pxx, pxy)
             if px == (247,247,247):
                 listingloading = 1
                 printer = True
@@ -123,7 +134,7 @@ def sniperscript():
                     if printer == True:
                         print("Line: 84")
                         printer = False
-                    David_Joseph = pyautogui.pixel(David_Josephx, David_Josephy) # Gets the RGB Values for the pixel at the location X:873 Y:234
+                    David_Joseph = getpixelcolour(David_Josephx, David_Josephy) # Gets the RGB Values for the pixel at the location X:873 Y:234
                     print(David_Joseph) # Prints the RGB Values for the pixel at the location X:873 Y:234
                     if David_Joseph != (247,247,247): # Checks if the RGB values are not equal to RGB(247,247,247)
                         auctionavailable = True
@@ -148,8 +159,8 @@ def sniperscript():
         loop3 = True
         while loop3 == True:
             print("loop3")
-            auctionoptions = pyautogui.pixel(auctionoptionsx, auctionoptionsy) # Confirms that the butout option is selected
-            auctionoptions1 = pyautogui.pixel(auctionoptions1x, auctionoptions1y) # Confirms that the butout option is selected
+            auctionoptions = getpixelcolour(auctionoptionsx, auctionoptionsy) # Confirms that the butout option is selected
+            auctionoptions1 = getpixelcolour(auctionoptions1x, auctionoptions1y) # Confirms that the butout option is selected
             if auctionoptions == (52, 23, 53):
                 print("BuyoutOption2")
                 x,y = BuyoutOption2x, BuyoutOption2y
@@ -158,22 +169,22 @@ def sniperscript():
                 print("BuyoutOption1")
                 x,y = BuyoutOptionx, BuyoutOptiony
                 loop3 = False
-        BuyoutOption = pyautogui.pixel(x, y) # Confirms that the butout option is selected
+        BuyoutOption = getpixelcolour(x, y) # Confirms that the butout option is selected
         while BuyoutOption != (255,0,134):
-            BuyoutOption = pyautogui.pixel(x, y) # Confirms that the butout option is selected
+            BuyoutOption = getpixelcolour(x, y) # Confirms that the butout option is selected
             keyboard.press(Key.down) # Move to Buy-out
             keyboard.release(Key.down)
             print("Moved to Buy-Out Button")
             consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nMoved to Buy-Out Button")
             time.sleep(.05)
-            BuyoutOption = pyautogui.pixel(x, y) # Confirms that the butout option is selected
+            BuyoutOption = getpixelcolour(x, y) # Confirms that the butout option is selected
         keyboard.press(Key.enter) # Selects Buy-out
         keyboard.release(Key.enter)
         if DEBUGMODE == True:
             consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nEnter pressed")
         print("Line: 98")
         time.sleep(0.5)
-        Budget_Shaeden = pyautogui.pixel(Budget_Shaedenx, Budget_Shaedeny) # Search for the image 'placebid.png' on your screen
+        Budget_Shaeden = getpixelcolour(Budget_Shaedenx, Budget_Shaedeny) # Search for the image 'placebid.png' on your screen
         if Budget_Shaeden == (255,0,134):
             keyboard.press(Key.enter) # Buys the car
             keyboard.release(Key.enter)
@@ -186,25 +197,25 @@ def sniperscript():
         print("buyoutoutcome")
         time.sleep(.5)
         printer = True
-        buyoutoutcomewait = pyautogui.pixel(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
+        buyoutoutcomewait = getpixelcolour(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
         while buyoutoutcomewait != (52,23,53):
-            buyoutoutcomewait = pyautogui.pixel(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
+            buyoutoutcomewait = getpixelcolour(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
             if printer == True:
                 consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nWaiting for buyout outcome loading poput")
                 print("Waiting for buyout outcome loading popup")
                 printer = False
         printer = True
-        buyoutoutcomewait = pyautogui.pixel(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
+        buyoutoutcomewait = getpixelcolour(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
         while buyoutoutcomewait == (52,23,53):
-            buyoutoutcomewait = pyautogui.pixel(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
+            buyoutoutcomewait = getpixelcolour(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
             if printer == True:
                 consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nWaiting for buyout outcome")
                 print("Waiting for buyout outcome")
                 printer = False
-        buyoutoutcomewait = pyautogui.pixel(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
+        buyoutoutcomewait = getpixelcolour(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
         time.sleep(.5)
-        buyoutfailed = pyautogui.pixel(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
-        buyoutsuccessful = pyautogui.pixel(buyoutx, buyouty) # Checks if the buyout was successful
+        buyoutfailed = getpixelcolour(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
+        buyoutsuccessful = getpixelcolour(buyoutx, buyouty) # Checks if the buyout was successful
         if buyoutsuccessful == (52,23,53):
             buyoutoutcomesuccessful()
         else:
@@ -223,13 +234,13 @@ def sniperscript():
         printer = True
         loop4 = True
         while loop4 == True:
-            collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
+            collectcar = getpixelcolour(collectcarx, collectcary) # Checks if collect car is currently selected
             if collectcar == (255,0,134):
                 loop4 = False
-            collectcar = pyautogui.pixel(collectcar1x, collectcar1y) # Checks if collect car is currently selected
+            collectcar = getpixelcolour(collectcar1x, collectcar1y) # Checks if collect car is currently selected
             if collectcar == (255,0,134):
                 loop4 = False
-            collectcar = pyautogui.pixel(collectcar2x, collectcar2y) # Checks if collect car is currently selected
+            collectcar = getpixelcolour(collectcar2x, collectcar2y) # Checks if collect car is currently selected
             if collectcar == (255,0,134):
                 loop4 = False
             if printer == True:
@@ -247,11 +258,11 @@ def sniperscript():
             consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nEnter pressed")
         time.sleep(.5)
         printer = True
-        collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
+        collectcar = getpixelcolour(collectcarx, collectcary) # Checks if collect car is currently selected
         while collectcar == (255,0,134):
-            collectcar = pyautogui.pixel(collectcarx, collectcary) # Checks if collect car is currently selected
-            collectcar = pyautogui.pixel(collectcar1x, collectcar1y) # Checks if collect car is currently selected
-            collectcar = pyautogui.pixel(collectcar2x, collectcar2y) # Checks if collect car is currently selected
+            collectcar = getpixelcolour(collectcarx, collectcary) # Checks if collect car is currently selected
+            collectcar = getpixelcolour(collectcar1x, collectcar1y) # Checks if collect car is currently selected
+            collectcar = getpixelcolour(collectcar2x, collectcar2y) # Checks if collect car is currently selected
             keyboard.press(Key.enter) # Collects the car
             keyboard.release(Key.enter)
             if printer == True:
@@ -259,9 +270,9 @@ def sniperscript():
                 print("Attempting to collect the car")
                 printer = False
         printer = True
-        carcollected = pyautogui.pixel(carcollectedx, carcollectedy) # Checks if collect car is currently selected
+        carcollected = getpixelcolour(carcollectedx, carcollectedy) # Checks if collect car is currently selected
         while carcollected != (52, 23, 53):
-            carcollected = pyautogui.pixel(carcollectedx, carcollectedy) # Checks if collect car is currently selected
+            carcollected = getpixelcolour(carcollectedx, carcollectedy) # Checks if collect car is currently selected
             if printer == True:
                 consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nWaiting for car to be collected")
                 print("Waiting for car to be collected")
@@ -274,11 +285,11 @@ def sniperscript():
         #else:
         #    print("Car collect option not selected")
         #print("Line: 159")
-        #sellerdetails = pyautogui.pixel(sellerdetailsx, sellerdetailsy) # Search for the image of the seller details of the desired car on your screen
+        #sellerdetails = getpixelcolour(sellerdetailsx, sellerdetailsy) # Search for the image of the seller details of the desired car on your screen
         #while sellerdetails != (255,0,134):
-        #    sellerdetails = pyautogui.pixel(sellerdetailsx, sellerdetailsy) # Search for the image of the seller details of the desired car on your screen
-        #    sellerdetails = pyautogui.pixel(sellerdetails2x, sellerdetails2y) # Search for the image of the seller details of the desired car on your screen
-        #    sellerdetails = pyautogui.pixel(sellerdetails3x, sellerdetails3y) # Search for the image of the seller details of the desired car on your screen
+        #    sellerdetails = getpixelcolour(sellerdetailsx, sellerdetailsy) # Search for the image of the seller details of the desired car on your screen
+        #    sellerdetails = getpixelcolour(sellerdetails2x, sellerdetails2y) # Search for the image of the seller details of the desired car on your screen
+        #    sellerdetails = getpixelcolour(sellerdetails3x, sellerdetails3y) # Search for the image of the seller details of the desired car on your screen
         #time.sleep(.2)
 
         time.sleep(.7)
@@ -294,9 +305,9 @@ def sniperscript():
         #   Buyout Failed
         consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nBuyout Failed")
         print("Buyout Failed")
-        buyoutfailed = pyautogui.pixel(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
+        buyoutfailed = getpixelcolour(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
         while buyoutfailed != (52,23,53):
-            buyoutfailed = pyautogui.pixel(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
+            buyoutfailed = getpixelcolour(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
         keyboard.press(Key.enter) # Backs out of the successful buy-out screen
         keyboard.release(Key.enter)
         print("Line: 272")
@@ -319,14 +330,14 @@ def sniperscript():
         # Returns from the auction house to the start
         consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nReturning to start")
         print("Line: 163")
-        time.sleep(.1)
+        #time.sleep(.1)
         printer = True
-        Rear_Window = pyautogui.pixel(Rear_Windowx, Rear_Windowy)
+        Rear_Window = getpixelcolour(Rear_Windowx, Rear_Windowy)
         while Rear_Window != (255,222,57):
             if printer == True:                
                 print("Checking if there are any cars up for auction")
                 printer = False
-            Rear_Window = pyautogui.pixel(Rear_Windowx, Rear_Windowy) # Checks to see if you are in the auction house - viewing the cars up for auction
+            Rear_Window = getpixelcolour(Rear_Windowx, Rear_Windowy) # Checks to see if you are in the auction house - viewing the cars up for auction
         print("Line: 165")
         keyboard.press(Key.esc) # Returns to start location, before entering the search for the desired car
         keyboard.release(Key.esc)
