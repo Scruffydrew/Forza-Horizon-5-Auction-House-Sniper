@@ -72,6 +72,7 @@ def sniperscript():
             ahsearch = getpixelcolour(ahsearchx, ahsearchy)
             while ahsearch != (255,0,134):
                 ahsearch = getpixelcolour(ahsearchx, ahsearchy)
+            ahsearch = getpixelcolour(ahsearchx, ahsearchy)
             while ahsearch == (255,0,134):
                 #searchah = getpixelcolour(searchahx, searchahy)
                 #while searchah != (255, 0, 134):
@@ -213,7 +214,10 @@ def sniperscript():
                 print("Waiting for buyout outcome")
                 printer = False
         buyoutoutcomewait = getpixelcolour(buyoutoutcomex, buyoutoutcomey) # Checks to see if the buyout outcome is still loading
-        time.sleep(.5)
+        buyoutoutcomecheck = getpixelcolour(buyoutoutcomecheckx, buyoutoutcomechecky)
+        while buyoutoutcomecheck != (52,23,53):
+            buyoutoutcomecheck = getpixelcolour(buyoutoutcomecheckx, buyoutoutcomechecky)
+        #time.sleep(.5)
         buyoutfailed = getpixelcolour(buyoutfailedx, buyoutfailedy) # Checks if the buyout failed
         buyoutsuccessful = getpixelcolour(buyoutx, buyouty) # Checks if the buyout was successful
         if buyoutsuccessful == (52,23,53):
@@ -426,6 +430,9 @@ def sniperscript():
 
     searchloadingx = int(0.4703125 * MonitorWidth)
     searchloadingy = int(0.52962962963 * MonitorHeight)
+
+    buyoutoutcomecheckx = int(0.33020833333 * MonitorWidth)
+    buyoutoutcomechecky = int(0.47685185185 * MonitorHeight)
 
     time.sleep(2)
 
