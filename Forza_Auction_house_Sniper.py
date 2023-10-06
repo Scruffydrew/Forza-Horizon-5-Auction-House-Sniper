@@ -1,7 +1,7 @@
 from pynput.keyboard import Key, Controller
 from datetime import datetime
 import time, sys, pyautogui, os
-import keyboard as keyboardlistenerDEBUGMODEDEBUGMODE
+import keyboard as keyboardlistener
 from threading import Thread
 from tkinter import Label, PhotoImage, Button
 import tkinter as tk
