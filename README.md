@@ -5,7 +5,7 @@ Please note that this bot does not bid on the cars on the auction house but inst
 
 **The program will continuously snipe cars for you so can leave it over night and potentially come back to multiple purchases of cars.**
 
-**Program will only work with a 16:9 screen resolution and you need to have 60+ fps**
+**Program will only work with a 16:9 screen resolution and you need to have 60+ fps as well as default brightness and hud scaling**
 
 If you run into any issues try running the program with your language setting set to English in forza horizon 5
 
