@@ -1,4 +1,5 @@
 # Forza-Horizon-5-Auction-House-Sniper
+**DEPRECATED**
 Please note that this bot does not bid on the cars on the auction house but instead buys out the car, in addition this bot does not garentee the successful purchase of a car from the auction house nor does it garentee a successful wining buyout of a car, it simply just allows you to try and snipe cars while you are not at your computer. 
 
 **To Stop the program you can either click on the button on the bottom right of your screen labelled with "Scruffydrew パン" or you can close the console or end it in task manager.**
