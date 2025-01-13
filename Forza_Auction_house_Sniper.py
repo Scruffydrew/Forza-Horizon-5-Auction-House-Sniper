@@ -5,8 +5,7 @@ import keyboard as keyboardlistener
 from threading import Thread
 from tkinter import Label, PhotoImage, Button
 import tkinter as tk
-from win32gui import GetWindowText, GetForegroundWindow
-from win32api import GetSystemMetrics
+from win32 import win32gui, win32api
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -368,8 +367,8 @@ def sniperscript():
     time.sleep(2)
     activewin = 0
     while activewin == 0:
-        print(GetWindowText(GetForegroundWindow()))
-        if GetWindowText(GetForegroundWindow()) == "Forza Horizon 5":
+        print(win32gui.GetWindowText(win32gui.GetForegroundWindow()))
+        if win32gui.GetWindowText(win32gui.GetForegroundWindow()) == "Forza Horizon 5":
             activewin = 1
 
     consoleoutput.set("Welcome to the Forza Auction House Sniper Bot\nGetting Monitor info")
@@ -381,8 +380,8 @@ def sniperscript():
     #global count
     #count = 0
 
-    MonitorWidth = GetSystemMetrics(0)
-    MonitorHeight = GetSystemMetrics(1)
+    MonitorWidth = win32api.GetSystemMetrics(0)
+    MonitorHeight = win32api.GetSystemMetrics(1)
 
     ahsearchx = int(0.171875 * MonitorWidth)
     ahsearchy = int(0.2305555556 * MonitorHeight)
